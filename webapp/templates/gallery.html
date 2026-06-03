@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Pipeline Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+        }
+        h1 { color: #e94560; }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #16213e;
+            border-radius: 8px;
+            padding: 12px;
+            width: 220px;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        .meta {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Photo Pipeline Gallery</h1>
+    <p>{{ images|length }} image(s) processed</p>
+    <div class="gallery">
+        {% for image in images %}
+        <div class="card">
+            {% if image.url %}
+            <img src="{{ image.url }}" alt="{{ image.filename }}">
+            {% endif %}
+            <div class="meta">
+                <div>{{ image.filename }}</div>
+                <div>{{ image.width }}x{{ image.height }}px</div>
+                <div>{{ image.thumb_size }} bytes</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
