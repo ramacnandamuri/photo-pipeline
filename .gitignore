@@ -25,3 +25,12 @@ build/
 # Secrets
 .env
 *.pem
+
+# Lambda dependencies (installed for deployment, not source code)
+lambda/PIL/
+lambda/pillow*/
+lambda/pillow.libs/
+lambda/*.dist-info/
+
+# Terraform zip artefact
+terraform/lambda.zip
