@@ -50,7 +50,7 @@ def lambda_handler(event, context):
         "thumb_size": len(thumb_bytes),
         "width": width,
         "height": height,
-        "uploaded_at": dt.datetime.utcnow().isoformat(),
+        "uploaded_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     })
 
     return {
