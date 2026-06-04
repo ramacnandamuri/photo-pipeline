@@ -5,6 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "s3" {
+    bucket = "photo-pipeline-tfstate-rama"
+    key    = "terraform.tfstate"
+    region = "eu-west-2"
+  }
 }
 
 provider "aws" {
