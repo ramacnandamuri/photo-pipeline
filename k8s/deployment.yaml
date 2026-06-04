@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: photo-gallery
+  labels:
+    app: photo-gallery
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: photo-gallery
+  template:
+    metadata:
+      labels:
+        app: photo-gallery
+    spec:
+      containers:
+        - name: photo-gallery
+          image: photo-gallery:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: AWS_DEFAULT_REGION
+              value: "eu-west-2"
+            - name: THUMB_BUCKET
+              value: "photo-pipeline-thumbs"
+            - name: TABLE_NAME
+              value: "photo-pipeline-metadata"
+          envFrom:
+            - secretRef:
+                name: aws-credentials
